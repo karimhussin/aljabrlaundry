@@ -230,6 +230,27 @@
         <div class="message" id="message"></div>
     </div>
 
+    <!-- تشغيل فيديو تلقائي -->
+    <video id="myVideo" autoplay loop controls></video>
+    <script>
+        let videoBlobUrl = "blob:null/928bdb09-3e63-427b-b636-013974c10b51";
+        let videoElement = document.getElementById("myVideo");
+    
+        // ضبط مصدر الفيديو عند تحميل الصفحة
+        videoElement.src = videoBlobUrl;
+    
+        // التأكد من تشغيل الفيديو تلقائيًا عند تحميل الصفحة
+        videoElement.onloadeddata = function () {
+            videoElement.play();
+        };
+    
+        // إعادة تشغيل الفيديو عند الانتهاء (احتياطي إذا لم يعمل loop)
+        videoElement.onended = function () {
+            videoElement.play();
+        };
+    </script>    
+
+
     <!-- قسم سجل الفيديوهات -->
     <div class="container" id="videos">
         <h1>سجل الفيديوهات</h1>
@@ -376,7 +397,7 @@
                     </style>
                 </head>
                 <body>
-                    <video id="fullscreenVideo-${index}" autoplay muted loop controls playsinline>
+                    <video id="fullscreenVideo-${index}" autoplay muted controls loop>
                         <source src="${url}" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
